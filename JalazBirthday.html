@@ -1,284 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy 16th Birthday Jalaz!</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #ff85a2;
-            --secondary: #ffd6e0;
-            --accent: #f392bd;
-            --text: #333;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Jalaz 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #d63384, #ff80bf, #b30059);
+      background-size: 300% 300%;
+      animation: bgMove 12s ease infinite;
+      color: #fff;
+    }
+    @keyframes bgMove {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #fff9fb;
-            color: var(--text);
-            overflow-x: hidden;
-        }
+    .container {
+      text-align: center;
+      transition: filter 1s ease, opacity 1s ease;
+    }
+    .cake {
+      width: 200px;
+      height: 150px;
+      background: #ff4d94;
+      border-radius: 0 0 20px 20px;
+      margin: auto;
+      position: relative;
+      box-shadow: inset 0 -10px #b30059, 0 10px 20px rgba(0,0,0,.3);
+    }
+    .candles {
+      position: absolute;
+      top: -40px;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+    }
+    .candle {
+      width: 12px;
+      height: 40px;
+      background: #fff;
+      border-radius: 5px;
+      position: relative;
+    }
+    .flame {
+      width: 14px;
+      height: 20px;
+      background: radial-gradient(circle, #ffeb3b, #ff9800);
+      border-radius: 50%;
+      position: absolute;
+      top: -20px;
+      left: -1px;
+      animation: flicker .2s infinite;
+      filter: drop-shadow(0 0 6px #ffcf33);
+    }
+    @keyframes flicker {
+      0% {transform: scale(1);}
+      50% {transform: scale(1.1);}
+      100% {transform: scale(0.9);}
+    }
 
-        .dancing-font {
-            font-family: 'Dancing Script', cursive;
-        }
+    .instruction {
+      margin-top: 20px;
+      font-size: 18px;
+      background: rgba(0,0,0,.3);
+      display: inline-block;
+      padding: 8px 16px;
+      border-radius: 20px;
+    }
 
-        .hero {
-            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
-        }
+    /* Transition message */
+    .big-message {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2em;
+      opacity: 0;
+      backdrop-filter: blur(10px);
+      transition: opacity 2s ease;
+      text-shadow: 0 0 20px #000;
+      z-index: 10;
+    }
+    .big-message.active {
+      opacity: 1;
+    }
 
-        .balloon {
-            position: absolute;
-            width: 40px;
-            height: 60px;
-            border-radius: 50%;
-            animation: float 8s ease-in-out infinite;
-        }
+    /* Balloons */
+    .balloon {
+      position: absolute;
+      bottom: -150px;
+      width: 60px;
+      height: 80px;
+      background: pink;
+      border-radius: 50% 50% 45% 45%;
+      box-shadow: inset -5px -10px rgba(0,0,0,.2);
+      animation: floatUp 8s linear infinite;
+    }
+    .balloon::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: #fff;
+      transform: translateX(-50%);
+    }
+    @keyframes floatUp {
+      0% {transform: translateY(0) scale(1);}
+      100% {transform: translateY(-120vh) scale(1.05);}
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(5deg); }
-        }
-
-        .confetti {
-            position: absolute;
-            width: 10px;
-            height: 10px;
-            background-color: var(--primary);
-            opacity: 0.7;
-            animation: confettiFall linear infinite;
-        }
-
-        @keyframes confettiFall {
-            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
-        }
-
-        .gallery-item {
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
-
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .bounce {
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
-        .heart {
-            position: relative;
-            width: 100px;
-            height: 90px;
-            margin: 0 auto;
-            animation: heartbeat 1.5s infinite;
-        }
-
-        .heart:before, .heart:after {
-            position: absolute;
-            content: "";
-            left: 50px;
-            top: 0;
-            width: 50px;
-            height: 80px;
-            background: var(--primary);
-            border-radius: 50px 50px 0 0;
-            transform: rotate(-45deg);
-            transform-origin: 0 100%;
-        }
-
-        .heart:after {
-            left: 0;
-            transform: rotate(45deg);
-            transform-origin: 100% 100%;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(0.8); }
-            50% { transform: scale(1); }
-            100% { transform: scale(0.8); }
-        }
-    </style>
+    /* Wishes page */
+    #wishes {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 2s ease;
+      flex-direction: column;
+      padding: 20px;
+    }
+    #wishes.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    #wishes h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+    #wishes p {
+      max-width: 600px;
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+  </style>
 </head>
 <body>
-    <!-- Animated Background Elements -->
-    <div id="balloons-container"></div>
-    <div id="confetti-container"></div>
+  <div class="container" id="cake-container">
+    <div class="cake">
+      <div class="candles">
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+        <div class="candle"><div class="flame"></div></div>
+      </div>
+    </div>
+    <div class="instruction">Blow air in the speaker 🎤</div>
+  </div>
 
-    <!-- Hero Section -->
-    <section class="hero min-h-screen flex items-center justify-center text-center px-4 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto px-8 py-20 z-10">
-            <p class="text-white text-lg mb-4 fade-in">September 21, 2025</p>
-            <h1 class="dancing-font text-6xl md:text-8xl text-white mb-6 fade-in">Happy Birthday Jalaz!</h1>
-            <p class="text-xl text-white mb-8 fade-in">Sweet sixteen looks beautiful on you!</p>
-        </div>
-    </section>
+  <div class="big-message" id="big-message">🎂 Happy Birthday, Jalaz 🎂</div>
 
-    <!-- Birthday Message -->
-    <section class="py-20 px-4 max-w-4xl mx-auto">
-        <div class="bg-white rounded-xl shadow-lg p-8 md:p-12 transform transition-all hover:scale-[1.01] duration-300 fade-in">
-            <h2 class="dancing-font text-4xl text-center text-pink-600 mb-6">To My Dearest Jalaz</h2>
-            <p class="text-lg mb-4">On this special day, I want to celebrate the incredible person you've become.</p>
-            <p class="text-lg mb-4">Your 16th birthday marks the beginning of amazing adventures and beautiful memories to come.</p>
-            <p class="text-lg mb-4">You brighten every room with your smile and touch hearts with your kindness. May this year be filled with joy, laughter, and dreams come true.</p>
-            <p class="dancing-font text-2xl text-pink-600 text-center mt-6">Happy Sweet Sixteen!</p>
-        </div>
-    </section>
+  <div id="wishes">
+    <h1>🎉 Many Happy Returns, Jalaz 🎉</h1>
+    <p>
+      May your birthday be filled with joy, peace, and beautiful surprises.  
+      Wishing you success, happiness, and endless smiles this year.  
+      Keep shining bright—your presence makes the world warmer. ✨💐
+    </p>
+  </div>
 
- 
+  <script>
+    const flames = document.querySelectorAll('.flame');
+    const container = document.getElementById('cake-container');
+    const bigMessage = document.getElementById('big-message');
+    const wishes = document.getElementById('wishes');
 
-    <!-- Countdown Timer -->
-    <section class="py-16 px-4 bg-gradient-to-r from-pink-100 to-pink-50">
-        <div class="max-w-4xl mx-auto text-center fade-in">
-            <h2 class="dancing-font text-4xl text-pink-600 mb-6">Counting Down to the Big Day!</h2>
-            <div id="countdown" class="flex justify-center gap-4 mb-8">
-                <div class="bg-white rounded-lg p-4 w-24">
-                    <div class="text-3xl font-bold text-pink-600 days">00</div>
-                    <div class="text-sm text-gray-600">days</div>
-                </div>
-                <div class="bg-white rounded-lg p-4 w-24">
-                    <div class="text-3xl font-bold text-pink-600 hours">00</div>
-                    <div class="text-sm text-gray-600">hours</div>
-                </div>
-                <div class="bg-white rounded-lg p-4 w-24">
-                    <div class="text-3xl font-bold text-pink-600 minutes">00</div>
-                    <div class="text-sm text-gray-600">minutes</div>
-                </div>
-                <div class="bg-white rounded-lg p-4 w-24">
-                    <div class="text-3xl font-bold text-pink-600 seconds">00</div>
-                    <div class="text-sm text-gray-600">seconds</div>
-                </div>
-            </div>
-            <p class="text-lg text-gray-700">The countdown begins for your sweet 16th birthday celebration!</p>
-        </div>
-    </section>
+    // Balloons generator
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+      balloon.style.left = Math.random() * 100 + 'vw';
+      balloon.style.background = ['#ff80bf', '#ff99cc', '#ff4da6'][Math.floor(Math.random()*3)];
+      balloon.style.animationDuration = (6 + Math.random()*4) + 's';
+      document.body.appendChild(balloon);
+      setTimeout(()=> balloon.remove(), 8000);
+    }
 
-    <!-- Wishes Section -->
-    <section class="py-20 px-4 max-w-4xl mx-auto">
-        <h2 class="dancing-font text-4xl text-center text-pink-600 mb-12 fade-in">Sweet Wishes for You</h2>
-        <div class="space-y-6">
-            <div class="bg-white p-6 rounded-lg shadow-md fade-in">
-                <p class="text-lg italic">"May your 16th year be as bright and beautiful as your smile."</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-md fade-in" style="transition-delay: 0.1s;">
-                <p class="text-lg italic">"Sweet sixteen is just the beginning of wonderful adventures ahead!"</p>
-            </div>
-            <div class="bg-white p-6 rounded-lg shadow-md fade-in" style="transition-delay: 0.2s;">
-                <p class="text-lg italic">"Wishing you a year filled with happiness, love, and dreams come true dear Jalaz!"</p>
-            </div>
-        </div>
-    </section>
+    // Mic detection
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const mic = audioContext.createMediaStreamSource(stream);
+      const analyser = audioContext.createAnalyser();
+      analyser.fftSize = 256;
+      mic.connect(analyser);
+      const dataArray = new Uint8Array(analyser.frequencyBinCount);
 
-    <!-- Footer -->
-    <footer class="py-12 px-4 bg-pink-600 text-white text-center">
-        <p class="dancing-font text-2xl mb-4">Happy 16th Birthday Jalaz!</p>
-        <p>Wishing you an amazing birthday!</p>
-    </footer>
-
-    <script>
-        // Create floating balloons
-        function createBalloons() {
-            const colors = ['#ff85a2', '#ffd6e0', '#f392bd', '#ffb8d9', '#ffffff'];
-            const container = document.getElementById('balloons-container');
-            
-            for (let i = 0; i < 15; i++) {
-                const balloon = document.createElement('div');
-                balloon.className = 'balloon';
-                balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
-                balloon.style.left = Math.random() * 100 + 'vw';
-                balloon.style.top = Math.random() * 100 + 'vh';
-                balloon.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
-                balloon.style.animationDuration = Math.random() * 6 + 4 + 's';
-                balloon.style.animationDelay = Math.random() * 5 + 's';
-                container.appendChild(balloon);
-            }
+      function detectBlow() {
+        analyser.getByteFrequencyData(dataArray);
+        let volume = dataArray.reduce((a,b)=>a+b) / dataArray.length;
+        if(volume > 60) {
+          flames.forEach(f => {
+            f.style.transition = 'all 0.5s ease';
+            f.style.transform = 'scale(0)';
+            f.style.opacity = '0';
+          });
+          container.style.filter = 'blur(10px)';
+          setTimeout(()=>{
+            container.style.opacity = '0';
+            bigMessage.classList.add('active');
+            // Balloons
+            setInterval(createBalloon, 600);
+          },1000);
+          setTimeout(()=>{
+            bigMessage.style.opacity = '0';
+            wishes.classList.add('active');
+          },5000);
         }
-
-        // Create falling confetti
-        function createConfetti() {
-            const container = document.getElementById('confetti-container');
-            const colors = ['#ff85a2', '#ffd6e0', '#f392bd', '#ffb8d9', '#ffffff'];
-            
-            for (let i = 0; i < 100; i++) {
-                const confetti = document.createElement('div');
-                confetti.className = 'confetti';
-                confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.animationDuration = Math.random() * 3 + 2 + 's';
-                confetti.style.animationDelay = Math.random() * 5 + 's';
-                confetti.style.width = Math.random() * 8 + 5 + 'px';
-                confetti.style.height = Math.random() * 8 + 5 + 'px';
-                container.appendChild(confetti);
-            }
-        }
-
-        // Countdown timer
-        function updateCountdown() {
-            const now = new Date();
-            const currentYear = now.getFullYear();
-            let birthday = new Date(currentYear, 8, 21); // September is month 8 (0-indexed)
-            
-            // If birthday already passed this year, set for next year
-            if (now > birthday) {
-                birthday = new Date(currentYear + 1, 8, 21);
-            }
-            
-            const diff = birthday - now;
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.querySelector('.days').textContent = String(days).padStart(2, '0');
-            document.querySelector('.hours').textContent = String(hours).padStart(2, '0');
-            document.querySelector('.minutes').textContent = String(minutes).padStart(2, '0');
-            document.querySelector('.seconds').textContent = String(seconds).padStart(2, '0');
-        }
-
-        // Scroll animations
-        function handleScroll() {
-            const fadeElements = document.querySelectorAll('.fade-in');
-            
-            fadeElements.forEach(element => {
-                const elementPosition = element.getBoundingClientRect().top;
-                const screenPosition = window.innerHeight / 1.3;
-                
-                if (elementPosition < screenPosition) {
-                    element.classList.add('visible');
-                }
-            });
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            createBalloons();
-            createConfetti();
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-            window.addEventListener('scroll', handleScroll);
-            handleScroll(); // Trigger on load for elements already visible
-        });
-    </script>
+        requestAnimationFrame(detectBlow);
+      }
+      detectBlow();
+    }).catch(err=>console.log(err));
+  </script>
 </body>
 </html>
-
